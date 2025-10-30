@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 from accounts.forms import CreateUserForm
+from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate,login as auth_login
 
@@ -17,7 +18,11 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Your account has been created successfully.")
             return redirect("login_view")
+        else:
+            messages.error(request, "There was an error creating your account.")
+
     else:
         form = CreateUserForm()
 
@@ -39,12 +44,17 @@ def login_view(request):
             username = request.POST.get('username')  # Username / Email
             password = request.POST.get('password')
             user = authenticate(request, username=username, password=password)
+            # Checks if the user is a writer or not and redirects accordingly
             if user is not None and user.is_writer:
                 login(request, user)
+                messages.info(request, "You have been logged in as a writer.")
                 return redirect('writer-dashboard')
+            # If the user is not a writer, redirect to client dashboard
             if user is not None and not user.is_writer:
                 login(request, user)
+                messages.info(request, "You have been logged in as a client.")
                 return redirect('client-dashboard')
+            
     context = {'form': form}
     return render(request, 'accounts/login.html', context)
 
@@ -55,5 +65,6 @@ def login_view(request):
 def logout_view(request):
 
     logout(request)
+    messages.info(request, "You have been logged out.")
 
     return redirect("login_view")

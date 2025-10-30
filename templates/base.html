@@ -19,13 +19,16 @@
 
 
           <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
+          <link rel="stylesheet" href="{% static 'css/toasts.css' %}">
+          
 
         </head>
 
-{% include 'partials/navbar.html' %}
+
 
         <body>
+          {% include 'partials/navbar.html' %}
+          {% include '_toasts.html' %}
       
             <br>
             <br>
@@ -47,6 +50,7 @@
         </script>
 
         <script src="{% static 'js/app.js' %}"></script>
+        <script src="{% static 'js/toasts.js' %}"></script>
 
 
     </html>

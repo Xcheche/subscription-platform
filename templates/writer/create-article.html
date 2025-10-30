@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<div class="container bg-white shadow-md p-5 form-layout w-50 mx-auto">
+    <h3>Create Article</h3>
+    <p>You may create a new article using the form below:</p>
+    <br>
+    <form method="POST" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-success w-100" type="submit" value="Create Article" /> <i class="fa fa-user-plus"
+            aria-hidden="true"></i>
+
+    </form>
+  
+</div>
+
+{% endblock content %}
+

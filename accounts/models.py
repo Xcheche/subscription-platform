@@ -18,7 +18,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name="Are you a writer?"
     )
 
-    USERNAME_FIELD = 'email'  # ❌ You had `USERNAME_FIELDs`, which is incorrect
+    USERNAME_FIELD = 'email'  # Using email as the username
     REQUIRED_FIELDS = []  # No other fields required when creating a user
 
     objects = CustomUserManager()
