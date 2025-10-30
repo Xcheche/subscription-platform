@@ -11,7 +11,7 @@ def writer_dashboard(request):
    
     return render(request, 'writer/writer-dashboard.html')
 
-
+@login_required
 def create_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
