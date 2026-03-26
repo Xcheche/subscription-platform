@@ -3,7 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.contrib import messages as message
 from django.shortcuts import redirect
+from urllib3 import request
 from writer.forms import ArticleForm
+from .models import Article
 # Create your views here.
 
 @login_required
@@ -28,4 +30,12 @@ def create_article(request):
     else:
         form = ArticleForm()
     
-    return render(request, 'writer/create-article.html', {'form': form})
+    return render(request, 'writer/my-articles.html', {'form': form})
+
+
+#Article list of the user
+@login_required 
+def article_list(request):
+    current_user = request.user.id
+    articles = Article.objects.filter(user=current_user).order_by('-date_posted')
+    return render(request, 'writer/my-articles.html', {'articles': articles})

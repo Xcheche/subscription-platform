@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+ 
+        {% for article in articles %}
+      <div class="container bg-white shadow-md p-5 form-layout mb-3">
+            <h3>{{ article.title }}</h3>
+            <br>
+            {{ article.content }}
+            <br>
+            {{ article.date_posted }}
+            <br> <br>
+      </div>
+        {% endfor %}
+     
+   
+{% endblock %}

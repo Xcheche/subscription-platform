@@ -7,7 +7,9 @@ click==8.2.1
 diff-match-patch==20241021
 Django==5.2.4
 django-baton==5.0.2
+django-crispy-forms==2.4
 django-import-export==4.3.9
+crispy-bootstrap5==2025.6
 flake8==7.3.0
 idna==3.10
 mccabe==0.7.0
